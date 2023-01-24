@@ -49,34 +49,38 @@ public class SimpleLevelTransition : MonoBehaviour
         }
     }
 
-    // IEnumerator LoadSceneWithFakeLoadingTime(string sceneName) {
-    //     LoadingBarFill.fillAmount = 0;
-    //     LoadingScreen.SetActive(true);
+    IEnumerator LoadSceneWithFakeLoadingTime(string sceneName) {
+        LoadingBarFill.fillAmount = 0;
+        LoadingScreen.SetActive(true);
 
-    //     AsyncOperation operation = SceneManager.LoadSceneAsync(sceneName);
-    //     operation.allowSceneActivation = false;
-    //     float progress = 0;
-    //     while(!operation.isDone) {
-    //         progress = Mathf.MoveTowards(progress, operation.progress, Time.deltaTime);
-    //         LoadingBarFill.fillAmount = progress;
-
-    //     }
-    // }
+        AsyncOperation operation = SceneManager.LoadSceneAsync(sceneName);
+        operation.allowSceneActivation = false;
+        float progress = 0;
+        while(!operation.isDone) {
+            progress = Mathf.MoveTowards(progress, operation.progress, Time.deltaTime);
+            LoadingBarFill.fillAmount = progress;
+            if(progress>=0.9f) {
+                LoadingBarFill.fillAmount = 1;
+                operation.allowSceneActivation = true;
+            }
+            yield return null;
+        }
+    }
 
     //Set Fake loading time
 
-    IEnumerator WaitForLoadingBar(float seconds)
-{
-     float currentTime = seconds;
+//     IEnumerator WaitForLoadingBar(float seconds)
+// {
+//      float currentTime = seconds;
  
-     while (currentTime > 0)
-     {
-          currentTime -= Time.deltaTime;
-          yield return null;
-     }
+//      while (currentTime > 0)
+//      {
+//           currentTime -= Time.deltaTime;
+//           yield return null;
+//      }
  
-     Debug.Log(seconds + " seconds have passed! And I'm done waiting!");
-}
+//      Debug.Log(seconds + " seconds have passed! And I'm done waiting!");
+// }
    
   
     private void OnTriggerEnter(Collider col)
@@ -84,8 +88,9 @@ public class SimpleLevelTransition : MonoBehaviour
         if(col.tag == "Player")
         {
             //SceneManager.LoadScene(DesiredLevelName);
-            StartCoroutine(LoadSceneAsync(DesiredLevelName));
+            //StartCoroutine(LoadSceneAsync(DesiredLevelName));
             //StartCoroutine(WaitForLoadingBar(10));
+            StartCoroutine(LoadSceneWithFakeLoadingTime(DesiredLevelName));
         }
     }
 }
