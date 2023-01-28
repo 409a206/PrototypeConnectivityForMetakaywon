@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using JUTPS;
 
 public class MinimapControls : MonoBehaviour
 {
@@ -46,6 +47,24 @@ public class MinimapControls : MonoBehaviour
     private float currentTime = 0;
     private float normalizedValue;
 
+    //zoom 관련 변수
+    [SerializeField]
+    private float zoomSpeed = 10f;
+    [SerializeField]
+    private float maxZoomSize = 320;
+    [SerializeField]
+    private float minZoomSize = 30;
+    
+    //캐릭터 컨트롤러 관련 변수
+    [SerializeField]
+    private CamPivotController CharacterCamPivotController;
+    [SerializeField]
+    private ThirdPersonController characterController;
+
+    //Map Drag 관련 변수
+    public float dragSpeed = 3f;
+    private Vector3 dragOrigin;
+
     private float appliedMapWidth;
     private float appliedMapHeight;
     private float appliedCameraSize;
@@ -74,7 +93,30 @@ public class MinimapControls : MonoBehaviour
     void Update()
     {
        SizeShiftToggle();
+       Zoom();
+       //DisableCharacterMovementWhileExtended();
+       DragMap();
        //Debug.Log(Mathf.Lerp(1, 2, lerpTime * Time.deltaTime));
+    }
+
+    private void DragMap()
+    {
+        if(isExtended) {
+            //if 마우스가 맵 위에 있다면
+            
+        }
+    }
+
+    private void DisableCharacterMovementWhileExtended()
+    {   
+        //else절에서 문제 발생.
+        if(isExtended) {
+            CharacterCamPivotController.enabled = false;
+            characterController.enabled = false;
+        } else {
+            CharacterCamPivotController.enabled = true;
+            characterController.enabled = true;
+        }
     }
 
     void SizeShiftToggle() {
@@ -152,5 +194,28 @@ public class MinimapControls : MonoBehaviour
         Debug.Log(isExtended);
         yield return null;
        
+    }
+
+    private void Zoom() {
+
+        float scroll = Input.GetAxis("Mouse ScrollWheel") * zoomSpeed;
+        if(isExtended) {
+
+            //최대 줌인
+            if(mapCamera.orthographicSize <= minZoomSize && scroll < 0) {
+                mapCamera.orthographicSize = minZoomSize;
+            } 
+            //최대 줌 아웃
+            else if(mapCamera.orthographicSize >= maxZoomSize && scroll < 0) {
+                mapCamera.orthographicSize = maxZoomSize;
+            }
+
+            //줌인 아웃 하기
+
+            else {
+                mapCamera.orthographicSize += scroll;
+            }
+
+        }
     }
 }
