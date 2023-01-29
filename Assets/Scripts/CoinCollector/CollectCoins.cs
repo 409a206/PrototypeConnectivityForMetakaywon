@@ -21,7 +21,7 @@ public class CollectCoins : MonoBehaviour
             CoinCollectorText.text = "Coins Collected = " + coinCounter.coinsCollected;
             // = "Coins Collected = ";
 
-
+            coinCounter.gameObject.GetComponent<AudioSource>().PlayOneShot(coinCounter.snd_collect_coin);
             Destroy(this.gameObject);
         }
     }
