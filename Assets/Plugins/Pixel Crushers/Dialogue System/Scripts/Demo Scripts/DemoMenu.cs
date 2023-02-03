@@ -73,6 +73,7 @@ namespace PixelCrushers.DialogueSystem.Demo
             {
                 SetMenuStatus(false);
                 SaveGame();
+
             }
             if (GUI.Button(new Rect(10, 160, windowRect.width - 20, 48), "Load Game"))
             {
