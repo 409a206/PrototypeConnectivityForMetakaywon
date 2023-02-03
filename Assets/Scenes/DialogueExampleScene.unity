@@ -5676,7 +5676,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3565adf32935a7e4fa5fddaa7b4de4dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EmailManager: {fileID: 0}
+  EmailManager: {fileID: 1444867357}
 --- !u!1 &1691732246
 GameObject:
   m_ObjectHideFlags: 0
