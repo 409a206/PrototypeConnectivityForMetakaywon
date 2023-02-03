@@ -4532,8 +4532,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SenderAddress: skrt1533@gmail.com
-  ReceiverAddress: 409a206@naver.com
-  MailSubject: "\uBA54\uD0C0\uACC4\uC6D0 \uD504\uB85C\uC81D\uD2B8"
+  ReceiverAddress: ychoi25@gmail.com
+  MailSubject: "[\uBA54\uD0C0\uACC4\uC6D0 \uC571 \uBC1C\uC1A1] \uACBD\uD488\uC744
+    \uBC1B\uC544\uAC00\uC138\uC694!"
   MailBody: "\uAE40\uD615\uC9C4\uB2D8! \uD018\uC2A4\uD2B8 \uC644\uB8CC\uB97C \uCD95\uD558\uB4DC\uB9BD\uB2C8\uB2E4.
     \uC774 \uC778\uC99D \uBA54\uC77C\uC744 \uCEA1\uCCD0\uD558\uC5EC \uD559\uC0DD\uCC98\uC5D0
     \uC81C\uCD9C\uD558\uC2DC\uBA74 \uACBD\uD488\uC744 \uBC1B\uC73C\uC2E4 \uC218 \uC788\uC2B5\uB2C8\uB2E4."
@@ -6743,6 +6744,7 @@ GameObject:
   - component: {fileID: 2031169467}
   - component: {fileID: 2031169466}
   - component: {fileID: 2031169465}
+  - component: {fileID: 2031169468}
   m_Layer: 0
   m_Name: "\uC774\uBA54\uC77C\uB9E8"
   m_TagString: Untagged
@@ -6960,6 +6962,19 @@ MonoBehaviour:
     onUse:
       m_PersistentCalls:
         m_Calls: []
+--- !u!135 &2031169468
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2031169460}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 3.13
+  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!1 &2050017034
 GameObject:
   m_ObjectHideFlags: 0
