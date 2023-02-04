@@ -23,3 +23,9 @@ MonoBehaviour:
   - functionName: Quest/QuestSignDisappear
     parameters: 01000000
     returnValue: 0
+  - functionName: Email/SendMail
+    parameters: 01000000
+    returnValue: 0
+  - functionName: GSpreadSheet/AddData
+    parameters: 01000000
+    returnValue: 0
