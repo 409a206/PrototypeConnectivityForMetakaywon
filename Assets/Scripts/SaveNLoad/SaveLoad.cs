@@ -6,22 +6,25 @@ using UnityEngine;
 
 public static class SaveLoad
 {
+
+
     public static void SaveData()
     {
         BinaryFormatter formatter = new BinaryFormatter();
-        string path = Application.persistentDataPath + "/SavedData";
+        string path = Application.persistentDataPath + "/gameData.save";
 
         FileStream stream = new FileStream(path, FileMode.Create);
 
         SavedData savedData = new SavedData();
 
         formatter.Serialize(stream, savedData);
+
         stream.Close();
     }
 
     public static SavedData LoadData()
     {
-        string path = Application.persistentDataPath + "/SavedData";
+        string path = Application.persistentDataPath + "/gameData.save";
 
         if(File.Exists(path))
         {
@@ -33,6 +36,7 @@ public static class SaveLoad
             stream.Close();
             
             return data;
+
         } else
         {
             Debug.LogError("Error: Save file not found in " + path);
