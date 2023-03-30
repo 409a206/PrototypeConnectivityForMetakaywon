@@ -103,7 +103,6 @@ public class DialogueManager : MonoBehaviour
         thirdPersonController.enabled = true;
         
         if(clipURL != "") Application.OpenURL(clipURL);
-       
     }
 
     //커서 보이기 코루틴
