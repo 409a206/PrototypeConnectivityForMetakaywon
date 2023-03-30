@@ -517,7 +517,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nameText: {fileID: 322084327}
   dialogueText: {fileID: 1044854187}
-  letterSpeed: 0.03
+  letterSpeed: 0.02
   animator: {fileID: 834850555}
   camPivotController: {fileID: 1611500159}
   thirdPersonController: {fileID: 479682145}
@@ -1043,7 +1043,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogueTriggerKey: 0
-  dialogue: {fileID: 0}
+  dialogue:
+    name: wef
+    sentences:
+    - waf
+    - waf
+    - waf
+    clipURL: 
 --- !u!1 &1528880248
 GameObject:
   m_ObjectHideFlags: 0
@@ -1060,7 +1066,6 @@ GameObject:
   - component: {fileID: 1528880251}
   - component: {fileID: 1528880250}
   - component: {fileID: 1528880249}
-  - component: {fileID: 1528880257}
   m_Layer: 0
   m_Name: NPC1 (1)
   m_TagString: Untagged
@@ -1125,7 +1130,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogueTriggerKey: 101
-  dialogue: {fileID: 0}
+  dialogue:
+    name: wef
+    sentences:
+    - a
+    - b
+    - c
+    clipURL: 
 --- !u!136 &1528880253
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1205,22 +1216,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1528880257
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1528880248}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 91ac12e1f9e7ab347b5609436ebfd34c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  actorName: 1
-  sentences:
-  - wef
-  - wef
 --- !u!1001 &1557260460
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1298,7 +1293,6 @@ GameObject:
   - component: {fileID: 1567113066}
   - component: {fileID: 1567113065}
   - component: {fileID: 1567113064}
-  - component: {fileID: 1567113067}
   m_Layer: 0
   m_Name: NPC1
   m_TagString: Untagged
@@ -1319,7 +1313,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogueTriggerKey: 101
-  dialogue: {fileID: 0}
+  dialogue:
+    name: wefewf
+    sentences:
+    - a
+    - wefaw
+    - awef
+    - egwagaweg
+    clipURL: 
 --- !u!136 &1567113060
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1443,22 +1444,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 2, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1567113067
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1567113058}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 91ac12e1f9e7ab347b5609436ebfd34c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  actorName: 2
-  sentences:
-  - f
-  - f
 --- !u!114 &1611500159 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3243631560226216736, guid: 3f9896eb08ade7b4ab7b111e294279d4, type: 3}
