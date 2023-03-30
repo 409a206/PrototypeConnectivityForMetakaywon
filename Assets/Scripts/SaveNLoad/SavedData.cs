@@ -3,13 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class SavedData : MonoBehaviour
+public class SavedData
 {
     public string DummyString;
-    public bool[] DummyBoolArray;
-    public float[] DummyFloatArray;
 
     public SavedData() {
+        DummyString = "Init";
 
         
     }
