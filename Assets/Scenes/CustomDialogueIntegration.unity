@@ -1045,11 +1045,12 @@ MonoBehaviour:
   dialogueTriggerKey: 0
   dialogue:
     name: wef
+    isMedalTaken: 0
+    clipURL: 
     sentences:
     - waf
     - waf
     - waf
-    clipURL: 
 --- !u!1 &1528880248
 GameObject:
   m_ObjectHideFlags: 0
@@ -1132,11 +1133,12 @@ MonoBehaviour:
   dialogueTriggerKey: 101
   dialogue:
     name: wef
+    isMedalTaken: 0
+    clipURL: 
     sentences:
     - a
     - b
     - c
-    clipURL: 
 --- !u!136 &1528880253
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1315,12 +1317,13 @@ MonoBehaviour:
   dialogueTriggerKey: 101
   dialogue:
     name: wefewf
+    isMedalTaken: 0
+    clipURL: www.naver.com
     sentences:
     - a
     - wefaw
     - awef
     - egwagaweg
-    clipURL: 
 --- !u!136 &1567113060
 CapsuleCollider:
   m_ObjectHideFlags: 0
