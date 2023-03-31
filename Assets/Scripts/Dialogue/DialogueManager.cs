@@ -16,11 +16,13 @@ public class DialogueManager : MonoBehaviour
 
     private Queue<string> sentences;
     private string clipURL;
+    private Dialogue dialogue;
 
     [SerializeField]
     private CamPivotController camPivotController;
     [SerializeField]
     private ThirdPersonController thirdPersonController;
+   // private Dialogue dialogue;
 
     [HideInInspector]
     public bool isDialogueRunning = false;
@@ -37,9 +39,9 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    public void StartDialogue(Dialogue dialogue)
+    public void StartDialogue(ref Dialogue dialogue)
     {
-       
+        this.dialogue = dialogue;
         Debug.Log("Starting conversation with " + dialogue.name);
         isDialogueRunning = !isDialogueRunning;
 
@@ -73,7 +75,6 @@ public class DialogueManager : MonoBehaviour
             return;
         }
 
-
         string sentence = sentences.Dequeue();
         //Debug.Log(sentence);
         //dialogueText.text = sentence;
@@ -102,7 +103,16 @@ public class DialogueManager : MonoBehaviour
         camPivotController.enabled = true;
         thirdPersonController.enabled = true;
         
-        if(clipURL != "") Application.OpenURL(clipURL);
+        //메달을 아직 획득하지 않았다면 획득
+        if(!dialogue.isMedalTaken) {
+            dialogue.isMedalTaken = true;
+            //AugmentMedal 함수 호출하기
+            Debug.Log("AugmentMedal Called");
+        }
+
+        if(clipURL != "") {
+            Application.OpenURL(clipURL);
+        }
     }
 
     //커서 보이기 코루틴
