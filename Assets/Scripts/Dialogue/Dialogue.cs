@@ -7,7 +7,8 @@ using UnityEngine;
 public class Dialogue
 {
     public string name;
-    public bool isMedalTaken;
+    public bool isMedalTaken = false;
+    public PlayerData.QuestData.QuestCode questCode;
 
     public string clipURL;
     [TextArea(3, 10)]

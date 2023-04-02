@@ -9,13 +9,16 @@ public class DialogueManager : MonoBehaviour
 {   
     public TMP_Text nameText;
     public TMP_Text dialogueText;
+    public GameObject ContinueButton;
+    public GameObject YesAndNoButton;
+    public GameObject ConfirmButton;
 
     public float letterSpeed = 0.02f;
 
     public Animator animator;
 
     private Queue<string> sentences;
-    private string clipURL;
+    //private string clipURL;
     private Dialogue dialogue;
 
     [SerializeField]
@@ -44,6 +47,7 @@ public class DialogueManager : MonoBehaviour
         this.dialogue = dialogue;
         Debug.Log("Starting conversation with " + dialogue.name);
         isDialogueRunning = !isDialogueRunning;
+        ContinueButton.SetActive(true);
 
         camPivotController.enabled = false;
         thirdPersonController.enabled = false;
@@ -54,7 +58,7 @@ public class DialogueManager : MonoBehaviour
         animator.SetBool("IsOpen", true);
 
         nameText.text = dialogue.name;
-        clipURL = dialogue.clipURL;
+        //clipURL = dialogue.clipURL;
 
         sentences.Clear();
 
@@ -73,6 +77,16 @@ public class DialogueManager : MonoBehaviour
         if(sentences.Count == 0) {
             EndDialogue();
             return;
+        }
+
+        if(sentences.Count == 1) {
+            //상황에 따라 다른 버튼 보이기 로직 작성
+            ContinueButton.SetActive(false);
+            if(dialogue.clipURL != "") {
+                YesAndNoButton.SetActive(true);
+            } else {
+                ConfirmButton.SetActive(true);
+            }
         }
 
         string sentence = sentences.Dequeue();
@@ -95,7 +109,12 @@ public class DialogueManager : MonoBehaviour
     }
 
     public void EndDialogue()
-    {
+    {   
+        //모든 버튼 비활성화
+        YesAndNoButton.SetActive(false);
+        ConfirmButton.SetActive(false);
+        ContinueButton.SetActive(false);
+        
         Debug.Log("End of Conversation");
         animator.SetBool("IsOpen", false);
         HideCursor();
@@ -106,12 +125,13 @@ public class DialogueManager : MonoBehaviour
         //메달을 아직 획득하지 않았다면 획득
         if(!dialogue.isMedalTaken) {
             dialogue.isMedalTaken = true;
+            PlayerData.QuestData.QuestsComplete.Add(dialogue.questCode);
             //AugmentMedal 함수 호출하기
             Debug.Log("AugmentMedal Called");
         }
 
-        if(clipURL != "") {
-            Application.OpenURL(clipURL);
+        if(dialogue.clipURL != "") {
+            Application.OpenURL(dialogue.clipURL);
         }
     }
 

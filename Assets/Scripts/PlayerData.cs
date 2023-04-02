@@ -5,25 +5,14 @@ using UnityEngine;
 public class PlayerData
 {
    public static class QuestData
-   {
-        // private static bool isTalkWithPresidentComplete;
-        // private static bool isTalkWithProfSoekComplete;
-        // private static bool isTalkWithLibrarianComplete;
-        // public static bool IsTalkWithPresidentComplete
-        // {
-        //     get{return isTalkWithPresidentComplete;}
-        //     set{isTalkWithPresidentComplete = value;}
-        // }
-        // public static bool IsTalkWithProfSoekComplete
-        // {
-        //     get{return isTalkWithProfSoekComplete;}
-        //     set{isTalkWithProfSoekComplete = value;}
-        // }
-        // public static bool IsTalkWithLibrarianComplete
-        // {
-        //     get{return isTalkWithLibrarianComplete;}
-        //     set{isTalkWithLibrarianComplete = value;}
-        // }
+   {    
+        public static List<QuestCode> QuestsInactive = new List<QuestCode>(); //세이브 파일에서 받아오는 로직 작성하기
+        public static List<QuestCode> QuestsActive = new List<QuestCode>(); //세이브 파일에서 받아오는 로직 작성하기
+        public static List<QuestCode> QuestsComplete = new List<QuestCode>(); //세이브 파일에서 받아오는 로직 작성하기
+        public enum QuestCode
+        {
+            Q1, Q2, Q3, Q4, Q5, Q6, Q7
+        }
    }
 
 
