@@ -9,6 +9,9 @@ public class Dialogue
     public string name;
     public bool isMedalTaken = false;
     public PlayerData.QuestData.QuestCode questCode;
+    
+    //선행퀘스트 목록
+    public PlayerData.QuestData.QuestCode[] requirements;
 
     public string clipURL;
     [TextArea(3, 10)]

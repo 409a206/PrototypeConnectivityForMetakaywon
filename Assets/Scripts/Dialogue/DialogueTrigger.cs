@@ -13,53 +13,29 @@ public class DialogueTrigger : MonoBehaviour
         InitiateQuestData();    
     }
 
-    
+    //미완
     private void InitiateQuestData()
     {
-        //if세이브파일이 없다면
-        // PlayerData.QuestData.QuestsActive.Add(PlayerData.QuestData.QuestCode.Q1);
-        // PlayerData.QuestData.QuestsInactive.Add(PlayerData.QuestData.QuestCode.Q2);
-        // PlayerData.QuestData.QuestsInactive.Add(PlayerData.QuestData.QuestCode.Q3);
-        // PlayerData.QuestData.QuestsInactive.Add(PlayerData.QuestData.QuestCode.Q4);
-        // PlayerData.QuestData.QuestsInactive.Add(PlayerData.QuestData.QuestCode.Q5);
-        // PlayerData.QuestData.QuestsInactive.Add(PlayerData.QuestData.QuestCode.Q6);
-        // PlayerData.QuestData.QuestsInactive.Add(PlayerData.QuestData.QuestCode.Q7);
-        //end if
+        
+            //해당 다이얼로그가 완료된 것이라면 isMedalTaken을 true로 변경
+            if(PlayerData.QuestData.QuestsComplete.Contains(dialogue.questCode)) {
+                dialogue.isMedalTaken = true;
+            }
 
-        switch(dialogue.questCode) {
-            case PlayerData.QuestData.QuestCode.Q1 : 
-                if(PlayerData.QuestData.QuestsComplete.Contains(PlayerData.QuestData.QuestCode.Q1))    
-                    dialogue.isMedalTaken = true;
-                break;
-            case PlayerData.QuestData.QuestCode.Q2 :
-                if(PlayerData.QuestData.QuestsComplete.Contains(PlayerData.QuestData.QuestCode.Q2))    
-                    dialogue.isMedalTaken = true;
-                break;
-            case PlayerData.QuestData.QuestCode.Q3 :
-                if(PlayerData.QuestData.QuestsComplete.Contains(PlayerData.QuestData.QuestCode.Q3))    
-                    dialogue.isMedalTaken = true;
-                break;
-            case PlayerData.QuestData.QuestCode.Q4 :
-                if(PlayerData.QuestData.QuestsComplete.Contains(PlayerData.QuestData.QuestCode.Q4))    
-                    dialogue.isMedalTaken = true;
-                break;
-            case PlayerData.QuestData.QuestCode.Q5 :
-                if(PlayerData.QuestData.QuestsComplete.Contains(PlayerData.QuestData.QuestCode.Q5))    
-                    dialogue.isMedalTaken = true;
-                break;
-            case PlayerData.QuestData.QuestCode.Q6 :
-                if(PlayerData.QuestData.QuestsComplete.Contains(PlayerData.QuestData.QuestCode.Q6))    
-                    dialogue.isMedalTaken = true;
-                break;
-            case PlayerData.QuestData.QuestCode.Q7 :
-                if(PlayerData.QuestData.QuestsComplete.Contains(PlayerData.QuestData.QuestCode.Q7))    
-                    dialogue.isMedalTaken = true;
-                break;
-            
-            default: 
-                Debug.LogError("QuestCode Set to Null");
-            break;
-        }
+            //선행퀘스트 관련 로직
+            for(int i = 0; i < dialogue.requirements.Length; i++) {
+                //완료한 퀘스트 목록에 선행퀘스트가 하나라도 없다면
+                if(!PlayerData.QuestData.QuestsComplete.Contains(dialogue.requirements[i])){
+                    //해당 퀘스트를 inactive처리하기
+                    PlayerData.QuestData.QuestsInactive.Add(dialogue.questCode);
+                    break;
+                }
+                //선행퀘스트가 다 완료되어있다면 active처리하기
+                if(i == dialogue.requirements.Length - 1) PlayerData.QuestData.QuestsActive.Add(dialogue.questCode); 
+            }
+
+            //questsComplete, questsActive, questsInactive 리스트 중 어디에 속하는지 체크하는 로직 작성하기
+
     }
 
     public void TriggerDialogue() {

@@ -37,7 +37,7 @@ public class DialogueManager : MonoBehaviour
         
     }
     private void Update() {
-        if(isDialogueRunning && Input.GetKeyDown(KeyCode.Space)) {
+        if(isDialogueRunning && Input.GetKeyDown(KeyCode.Space) && ContinueButton.activeSelf) {
             DisplayNextSentence();
         }
     }
@@ -74,10 +74,10 @@ public class DialogueManager : MonoBehaviour
     public void DisplayNextSentence()
     {
         
-        if(sentences.Count == 0) {
-            EndDialogue();
-            return;
-        }
+        // if(sentences.Count == 0) {
+        //     EndDialogue();
+        //     return;
+        // }
 
         if(sentences.Count == 1) {
             //상황에 따라 다른 버튼 보이기 로직 작성
@@ -114,7 +114,7 @@ public class DialogueManager : MonoBehaviour
         YesAndNoButton.SetActive(false);
         ConfirmButton.SetActive(false);
         ContinueButton.SetActive(false);
-        
+
         Debug.Log("End of Conversation");
         animator.SetBool("IsOpen", false);
         HideCursor();
@@ -122,6 +122,9 @@ public class DialogueManager : MonoBehaviour
         camPivotController.enabled = true;
         thirdPersonController.enabled = true;
         
+    }
+    
+    public void CompleteQuest() {
         //메달을 아직 획득하지 않았다면 획득
         if(!dialogue.isMedalTaken) {
             dialogue.isMedalTaken = true;
@@ -129,8 +132,11 @@ public class DialogueManager : MonoBehaviour
             //AugmentMedal 함수 호출하기
             Debug.Log("AugmentMedal Called");
         }
+    }
 
+    public void ShowURL() {
         if(dialogue.clipURL != "") {
+            Debug.Log("ShowURL");
             Application.OpenURL(dialogue.clipURL);
         }
     }
@@ -144,6 +150,7 @@ public class DialogueManager : MonoBehaviour
             yield return null;
         }
 
+    //커서 숨기기
     private void HideCursor()
     {
         StopCoroutine(ShowCursorAfterOneFrame());
