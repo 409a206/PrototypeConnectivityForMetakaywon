@@ -13,29 +13,49 @@ public class DialogueTrigger : MonoBehaviour
         InitiateQuestData();    
     }
 
-    //미완
     private void InitiateQuestData()
     {
-        
+        Debug.Log("Initiate QuestData Called");
+        //만약 플레이어 데이터에 해당 퀘스트 정보가 이미 있다면
+        if(PlayerData.QuestData.QuestsActive.Contains(dialogue.questCode)) {
+            //느낌표 활성 처리 로직 작성
+            dialogue.questIcon.SetActive(true);
+            Debug.Log(dialogue.questCode.ToString() + "Quest is in Active mode");
+            dialogue.isMedalTaken = false;
+            return;
+        } else if (PlayerData.QuestData.QuestsInactive.Contains(dialogue.questCode)) {
+            //느낌표 비활성 처리 로직 작성
+            dialogue.questIcon.SetActive(false);
+            Debug.Log(dialogue.questCode.ToString() + "Quest is in Inactive mode");
+            dialogue.isMedalTaken = false;
+            return;
+        } else if (PlayerData.QuestData.QuestsComplete.Contains(dialogue.questCode)) {
+            //느낌표 비활성 처리 로직 작성
+            dialogue.questIcon.SetActive(false);
+            Debug.Log(dialogue.questCode.ToString() + "Quest is in Complete mode");
             //해당 다이얼로그가 완료된 것이라면 isMedalTaken을 true로 변경
-            if(PlayerData.QuestData.QuestsComplete.Contains(dialogue.questCode)) {
-                dialogue.isMedalTaken = true;
+            dialogue.isMedalTaken = true;
+            return;
+        } 
+
+        //플레이어 데이터에 해당 퀘스트 정보가 없을 경우 로직
+        
+        //선행퀘스트 관련 로직
+        for(int i = 0; i < dialogue.requirements.Length; i++) {
+            //완료한 퀘스트 목록에 선행퀘스트가 하나라도 없다면
+            if(!PlayerData.QuestData.QuestsComplete.Contains(dialogue.requirements[i])){
+                //해당 퀘스트를 inactive처리하기
+                PlayerData.QuestData.QuestsInactive.Add(dialogue.questCode);
+                Debug.Log(dialogue.questCode.ToString() + "Quest is set Inactive");
+                //느낌표 비활성 처리 로직 작성
+                dialogue.questIcon.SetActive(false);
+                return;
             }
-
-            //선행퀘스트 관련 로직
-            for(int i = 0; i < dialogue.requirements.Length; i++) {
-                //완료한 퀘스트 목록에 선행퀘스트가 하나라도 없다면
-                if(!PlayerData.QuestData.QuestsComplete.Contains(dialogue.requirements[i])){
-                    //해당 퀘스트를 inactive처리하기
-                    PlayerData.QuestData.QuestsInactive.Add(dialogue.questCode);
-                    break;
-                }
-                //선행퀘스트가 다 완료되어있다면 active처리하기
-                if(i == dialogue.requirements.Length - 1) PlayerData.QuestData.QuestsActive.Add(dialogue.questCode); 
-            }
-
-            //questsComplete, questsActive, questsInactive 리스트 중 어디에 속하는지 체크하는 로직 작성하기
-
+        }
+        //선행퀘스트가 다 완료되어있다면 active처리하기
+        PlayerData.QuestData.QuestsActive.Add(dialogue.questCode); 
+        Debug.Log(dialogue.questCode.ToString() + "Quest is set Active");
+        dialogue.questIcon.SetActive(true);
     }
 
     public void TriggerDialogue() {
@@ -47,13 +67,17 @@ public class DialogueTrigger : MonoBehaviour
     }
 
     private void OnTriggerEnter(Collider other) {
-        if(other.tag == "Player") ShowDialogueStartMessage();
+        if(other.tag == "Player" && 
+        (PlayerData.QuestData.QuestsActive.Contains(dialogue.questCode) || PlayerData.QuestData.QuestsComplete.Contains(dialogue.questCode))) {
+        ShowDialogueStartMessage();
+        }
     }
 
     private void OnTriggerStay(Collider other) {
         
         if(other.tag == "Player") {
-            if(Input.GetKeyDown(dialogueTriggerKey) && FindObjectOfType<DialogueManager>().isDialogueRunning == false) {
+            if(Input.GetKeyDown(dialogueTriggerKey) && FindObjectOfType<DialogueManager>().isDialogueRunning == false
+            && (PlayerData.QuestData.QuestsActive.Contains(dialogue.questCode) || PlayerData.QuestData.QuestsComplete.Contains(dialogue.questCode))) {
                 Debug.Log("DialogueTriggerKey Pressed");
                 HideDialogueStartMessage();
                 TriggerDialogue();

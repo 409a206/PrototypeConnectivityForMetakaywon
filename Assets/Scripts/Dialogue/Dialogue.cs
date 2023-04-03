@@ -9,6 +9,7 @@ public class Dialogue
     public string name;
     public bool isMedalTaken = false;
     public PlayerData.QuestData.QuestCode questCode;
+    public GameObject questIcon;
     
     //선행퀘스트 목록
     public PlayerData.QuestData.QuestCode[] requirements;
