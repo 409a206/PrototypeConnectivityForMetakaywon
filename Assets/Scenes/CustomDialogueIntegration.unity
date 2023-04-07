@@ -1993,11 +1993,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogueTriggerKey: 101
   dialogue:
-    name: wef
+    name: makerspace
     isMedalTaken: 0
     questCode: 2
     questIcon: {fileID: 362525950}
-    requirements: 01000000
+    requirements: 0000000001000000
     clipURL: 
     sentences:
     - a
@@ -2723,7 +2723,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogueTriggerKey: 101
   dialogue:
-    name: wef
+    name: soek
     isMedalTaken: 0
     questCode: 1
     questIcon: {fileID: 1236872656}
@@ -2911,7 +2911,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogueTriggerKey: 101
   dialogue:
-    name: wefewf
+    name: president
     isMedalTaken: 0
     questCode: 0
     questIcon: {fileID: 104089648}
@@ -3143,7 +3143,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogueTriggerKey: 101
   dialogue:
-    name: wef
+    name: busStation
     isMedalTaken: 0
     questCode: 6
     questIcon: {fileID: 199258882}

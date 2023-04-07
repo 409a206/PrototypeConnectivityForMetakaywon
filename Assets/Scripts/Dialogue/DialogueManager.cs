@@ -136,6 +136,7 @@ public class DialogueManager : MonoBehaviour
             dialogue.questIcon.SetActive(false);
             //AugmentMedal 함수 호출하기
             //Debug.Log("AugmentMedal Called");
+            //FindObjectOfType<AugmentMedalCount>().AugmentMedal(1);
             UpdateOtherQuestsData();
         }
     }
