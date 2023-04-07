@@ -7,10 +7,15 @@ using UnityEngine;
 public class Dialogue
 {
     public string name;
-
-    [TextArea(3, 10)]
-    public string[] sentences;
+    public bool isMedalTaken = false;
+    public PlayerData.QuestData.QuestCode questCode;
+    public GameObject questIcon;
+    
+    //선행퀘스트 목록
+    public PlayerData.QuestData.QuestCode[] requirements;
 
     public string clipURL;
+    [TextArea(3, 10)]
+    public string[] sentences;
 
 }
