@@ -27,6 +27,8 @@ public class DialogueManager : MonoBehaviour
     private ThirdPersonController thirdPersonController;
     [SerializeField]
     private GameObject[] QuestNPCs;
+    [SerializeField]
+    private GameManagerAndUI gameManager;
    
 
     [HideInInspector]
@@ -54,7 +56,7 @@ public class DialogueManager : MonoBehaviour
         camPivotController.enabled = false;
         thirdPersonController.enabled = false;
 
-        StartCoroutine(ShowCursorAfterOneFrame());
+        StartCoroutine(gameManager.ShowCursorAfterOneFrame());
 
 
         animator.SetBool("IsOpen", true);
@@ -119,7 +121,7 @@ public class DialogueManager : MonoBehaviour
 
         //Debug.Log("End of Conversation");
         animator.SetBool("IsOpen", false);
-        HideCursor();
+        gameManager.HideCursor();
         isDialogueRunning = !isDialogueRunning;
         camPivotController.enabled = true;
         thirdPersonController.enabled = true;
@@ -184,19 +186,19 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    //커서 보이기 코루틴
-    protected IEnumerator ShowCursorAfterOneFrame()
-        {
-            Cursor.visible = true;
-            Cursor.lockState = CursorLockMode.None;
-            //Debug.Log("ShowCursorAfterOneFrame Called");
-            yield return null;
-        }
+    // //커서 보이기 코루틴
+    // public IEnumerator ShowCursorAfterOneFrame()
+    //     {
+    //         Cursor.visible = true;
+    //         Cursor.lockState = CursorLockMode.None;
+    //         //Debug.Log("ShowCursorAfterOneFrame Called");
+    //         yield return null;
+    //     }
 
-    //커서 숨기기
-    private void HideCursor()
-    {
-        StopCoroutine(ShowCursorAfterOneFrame());
-        Cursor.visible = false;
-    }
+    // //커서 숨기기
+    // public void HideCursor()
+    // {
+    //     StopCoroutine(ShowCursorAfterOneFrame());
+    //     Cursor.visible = false;
+    // }
 }

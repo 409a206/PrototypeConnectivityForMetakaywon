@@ -77,7 +77,8 @@ public class DialogueTrigger : MonoBehaviour
         
         if(other.tag == "Player") {
             if(Input.GetKeyDown(dialogueTriggerKey) && FindObjectOfType<DialogueManager>().isDialogueRunning == false
-            && (PlayerData.QuestData.QuestsActive.Contains(dialogue.questCode) || PlayerData.QuestData.QuestsComplete.Contains(dialogue.questCode))) {
+            && (PlayerData.QuestData.QuestsActive.Contains(dialogue.questCode) || PlayerData.QuestData.QuestsComplete.Contains(dialogue.questCode))
+            && !SaveAndLoadController.isMenuOpen) {
                 Debug.Log("DialogueTriggerKey Pressed");
                 HideDialogueStartMessage();
                 TriggerDialogue();

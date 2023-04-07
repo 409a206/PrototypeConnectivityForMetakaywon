@@ -6,8 +6,7 @@ using UnityEngine;
 
 public class SaveLoad
 {
-
-
+  
     public static void SaveData()
     {
         BinaryFormatter formatter = new BinaryFormatter();
