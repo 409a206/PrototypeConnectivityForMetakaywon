@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SaveAndLoadController : MonoBehaviour
 {   
@@ -19,6 +20,10 @@ public class SaveAndLoadController : MonoBehaviour
     private DialogueManager dialogueManager;
     [SerializeField]
     private GameManagerAndUI gameManager;
+    [SerializeField]
+    private GameObject alertBox;
+    [SerializeField]
+    private LevelTransitionManager levelTransitionManager;
 
     // Start is called before the first frame update
     void Start()
@@ -32,47 +37,63 @@ public class SaveAndLoadController : MonoBehaviour
         ToggleMenu(ref isMenuOpen);
     }
 
-    private void ToggleMenu(ref bool isMenuOpen)
+    public void ToggleMenu(ref bool isMenuOpen)
     {
         if(Input.GetKeyDown(OpenMenuKey)){
             if(dialogueManager != null) {
                 if(!dialogueManager.isDialogueRunning) {
-                    isMenuOpen = !isMenuOpen;
                     if(isMenuOpen) {
-                        Debug.Log("메뉴창 열기");
-                        camPivotController.enabled = false;
-                        thirdPersonController.enabled = false;
-                        MenuCanvas.enabled = true;
-                        StartCoroutine(gameManager.ShowCursorAfterOneFrame());
+                        CloseMenu();
                     } else {
-                        Debug.Log("메뉴창 닫기");
-                        camPivotController.enabled = true;
-                        thirdPersonController.enabled = true;
-                        MenuCanvas.enabled = false;
-                        gameManager.HideCursor();
+                        OpenMenu();
                     } 
             }
             } else {
-                 isMenuOpen = !isMenuOpen;
                     if(isMenuOpen) {
-                        Debug.Log("메뉴창 열기");
-                        camPivotController.enabled = false;
-                        thirdPersonController.enabled = false;
-                        MenuCanvas.enabled = true;
-                        StartCoroutine(gameManager.ShowCursorAfterOneFrame());
+                       CloseMenu();
                     } else {
-                        Debug.Log("메뉴창 닫기");
-                        camPivotController.enabled = true;
-                        thirdPersonController.enabled = true;
-                        MenuCanvas.enabled = false;
-                        gameManager.HideCursor();
+                       OpenMenu();
                     } 
             }
         }
     }
 
-    private void SaveData() {
-        SaveLoad.SaveData();
+    public void OpenMenu() {
+        Debug.Log("메뉴창 열기");
+        isMenuOpen = !isMenuOpen;
+        camPivotController.enabled = false;
+        thirdPersonController.enabled = false;
+        MenuCanvas.enabled = true;
+        StartCoroutine(gameManager.ShowCursorAfterOneFrame());
+    }
+    public void CloseMenu() {
+        Debug.Log("메뉴창 닫기");
+        isMenuOpen = !isMenuOpen;
+        camPivotController.enabled = true;
+        thirdPersonController.enabled = true;
+        MenuCanvas.enabled = false;
+        gameManager.HideCursor();
     }
 
+    public void ShowAlert() {
+        alertBox.SetActive(true);
+    }
+
+    public void CloseAlert() {
+        alertBox.SetActive(false);
+    }
+
+    public void SaveData() {
+        SaveLoad.SaveData();   
+    }
+
+    public void LoadData() {
+        SaveLoad.LoadData();
+    }
+
+    public void ExitToLobby() {
+        SaveLoad.SaveData(); 
+        //로비로 가는 로직 작성
+        levelTransitionManager.LoadScene("Lobby", new Vector3(), new Vector3());
+    }
 }

@@ -140,6 +140,8 @@ public class DialogueManager : MonoBehaviour
             //Debug.Log("AugmentMedal Called");
             //FindObjectOfType<AugmentMedalCount>().AugmentMedal(1);
             UpdateOtherQuestsData();
+            //퀘스트 데이터 세이브하기
+            SaveLoad.SaveData();
         }
     }
 

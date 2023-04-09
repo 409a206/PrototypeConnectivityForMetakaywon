@@ -4,7 +4,10 @@ using UnityEngine;
 
 [System.Serializable]
 public class PlayerData
-{
+{   
+   public PlayerData() {
+    
+   }
    public static class QuestData
    {    
         public static List<QuestCode> QuestsInactive = new List<QuestCode>(); //세이브 파일에서 받아오는 로직 작성하기

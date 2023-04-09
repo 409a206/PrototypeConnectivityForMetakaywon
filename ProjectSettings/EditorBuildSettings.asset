@@ -11,4 +11,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/DummySceneForLoading.unity
     guid: 0223218735006cd4b8ac7bfb72df1e4e
+  - enabled: 1
+    path: Assets/Scenes/CustomDialogueIntegration.unity
+    guid: efa413903c9eb2b4fabbce5e9981ea4e
+  - enabled: 1
+    path: Assets/Scenes/Lobby.unity
+    guid: d7203a2ff29872746a2ceae67af11b6f
   m_configObjects: {}

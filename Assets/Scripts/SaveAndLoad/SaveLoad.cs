@@ -9,6 +9,7 @@ public class SaveLoad
   
     public static void SaveData()
     {
+        Debug.Log("SaveData Called");
         BinaryFormatter formatter = new BinaryFormatter();
         string path = Application.persistentDataPath + "/gameData.save";
 
@@ -19,10 +20,12 @@ public class SaveLoad
         formatter.Serialize(stream, savedData);
 
         stream.Close();
+        
     }
 
     public static SavedData LoadData()
     {
+        Debug.Log("LoadData Called");
         string path = Application.persistentDataPath + "/gameData.save";
 
         if(File.Exists(path))
