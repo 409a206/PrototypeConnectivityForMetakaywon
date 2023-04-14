@@ -6518,5 +6518,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: LoadingScreenManager
       objectReference: {fileID: 0}
+    - target: {fileID: 6279497053042827123, guid: 35e1f7c341b57b542aad8fe124c7a62e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6279497053114435700, guid: 35e1f7c341b57b542aad8fe124c7a62e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6279497053813107964, guid: 35e1f7c341b57b542aad8fe124c7a62e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 35e1f7c341b57b542aad8fe124c7a62e, type: 3}
