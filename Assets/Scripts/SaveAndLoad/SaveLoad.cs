@@ -3,27 +3,34 @@ using System.Collections.Generic;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 using UnityEngine;
+using System;
 
 public class SaveLoad
 {
-
-
+  
     public static void SaveData()
     {
-        BinaryFormatter formatter = new BinaryFormatter();
-        string path = Application.persistentDataPath + "/gameData.save";
+        Debug.Log("SaveData Called");
+        try {
+            BinaryFormatter formatter = new BinaryFormatter();
+            string path = Application.persistentDataPath + "/gameData.save";
 
-        FileStream stream = new FileStream(path, FileMode.Create);
+            FileStream stream = new FileStream(path, FileMode.Create);
 
-        SavedData savedData = new SavedData();
+            SavedData savedData = new SavedData();
 
-        formatter.Serialize(stream, savedData);
+            formatter.Serialize(stream, savedData);
 
-        stream.Close();
+            stream.Close();
+        } catch(Exception e){ 
+            Debug.Log(e.ToString());
+            }
+        
     }
 
     public static SavedData LoadData()
     {
+        Debug.Log("LoadData Called");
         string path = Application.persistentDataPath + "/gameData.save";
 
         if(File.Exists(path))

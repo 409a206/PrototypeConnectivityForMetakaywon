@@ -186,4 +186,20 @@ public class GameManagerAndUI : MonoBehaviour
     {
 		ControlMobilePanels = true;
     }
+	
+	//커서 보이기 코루틴
+    public System.Collections.IEnumerator ShowCursorAfterOneFrame()
+        {
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+            //Debug.Log("ShowCursorAfterOneFrame Called");
+            yield return null;
+        }
+
+    //커서 숨기기
+    public void HideCursor()
+    {
+        StopCoroutine(ShowCursorAfterOneFrame());
+        Cursor.visible = false;
+    }
 }

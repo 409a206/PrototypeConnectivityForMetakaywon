@@ -16,6 +16,16 @@ public class DialogueTrigger : MonoBehaviour
     private void InitiateQuestData()
     {
         Debug.Log("Initiate QuestData Called");
+
+        //Saved Data가 존재한다면 불러오기
+        if(SaveLoad.LoadData() != null) {
+            Debug.Log("Quest Data Loaded");
+            PlayerData.QuestData.QuestsActive = SaveLoad.LoadData().QuestsActive;
+            PlayerData.QuestData.QuestsInactive = SaveLoad.LoadData().QuestsInactive;
+            PlayerData.QuestData.QuestsComplete = SaveLoad.LoadData().QuestsComplete;
+        }
+
+
         //만약 플레이어 데이터에 해당 퀘스트 정보가 이미 있다면
         if(PlayerData.QuestData.QuestsActive.Contains(dialogue.questCode)) {
             //느낌표 활성 처리 로직 작성
@@ -77,7 +87,8 @@ public class DialogueTrigger : MonoBehaviour
         
         if(other.tag == "Player") {
             if(Input.GetKeyDown(dialogueTriggerKey) && FindObjectOfType<DialogueManager>().isDialogueRunning == false
-            && (PlayerData.QuestData.QuestsActive.Contains(dialogue.questCode) || PlayerData.QuestData.QuestsComplete.Contains(dialogue.questCode))) {
+            && (PlayerData.QuestData.QuestsActive.Contains(dialogue.questCode) || PlayerData.QuestData.QuestsComplete.Contains(dialogue.questCode))
+            && !SaveAndLoadController.isMenuOpen) {
                 Debug.Log("DialogueTriggerKey Pressed");
                 HideDialogueStartMessage();
                 TriggerDialogue();

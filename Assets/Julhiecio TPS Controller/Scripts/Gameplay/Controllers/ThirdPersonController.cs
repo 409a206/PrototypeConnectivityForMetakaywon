@@ -117,6 +117,12 @@ public class ThirdPersonController : MonoBehaviour
     [HideInInspector] public bool IsReloading;
     [HideInInspector] public bool WallInFront;
     [HideInInspector] public bool InverseKinematics = true;
+    public static class SceneTransitionData
+    {
+        //기본값 설정하기
+        public static Vector3 PlayerSpawnPosition = new Vector3(1.85f, 0f, 13.3f);
+        public static Vector3 PlayerSpawnRotation = new Vector3();
+    }
 
 
     void Start()
@@ -181,6 +187,8 @@ public class ThirdPersonController : MonoBehaviour
         IKPositionRightHand.parent = transform;
         IKPositionRightHand.hideFlags = HideFlags.HideInHierarchy;
         IKPositionRightHand.gameObject.hideFlags = HideFlags.HideAndDontSave;
+
+        SetPlayerPos();
     }
     void FixedUpdate()
     {
@@ -1324,6 +1332,18 @@ public class ThirdPersonController : MonoBehaviour
 
     #endregion
 
+    private void SetPlayerPos()
+    {
+
+        if(SceneTransitionData.PlayerSpawnPosition != null && SceneTransitionData.PlayerSpawnRotation != null) {
+            Debug.Log("Player Position & Rotation is set");
+            this.transform.position = SceneTransitionData.PlayerSpawnPosition;
+            this.transform.rotation = Quaternion.Euler(SceneTransitionData.PlayerSpawnRotation.x, 
+                                                        SceneTransitionData.PlayerSpawnRotation.y, 
+                                                        SceneTransitionData.PlayerSpawnRotation.z);
+        }
+
+    }
     void OnAnimatorIK(int layerIndex)
     {
         if (layerIndex == 0 && DisableAllMove == false)
