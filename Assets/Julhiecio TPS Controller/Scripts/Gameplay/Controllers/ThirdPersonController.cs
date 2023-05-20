@@ -1336,7 +1336,7 @@ public class ThirdPersonController : MonoBehaviour
     {
 
         if(SceneTransitionData.PlayerSpawnPosition != null && SceneTransitionData.PlayerSpawnRotation != null) {
-            Debug.Log("Player Position & Rotation is set");
+//            Debug.Log("Player Position & Rotation is set");
             this.transform.position = SceneTransitionData.PlayerSpawnPosition;
             this.transform.rotation = Quaternion.Euler(SceneTransitionData.PlayerSpawnRotation.x, 
                                                         SceneTransitionData.PlayerSpawnRotation.y, 

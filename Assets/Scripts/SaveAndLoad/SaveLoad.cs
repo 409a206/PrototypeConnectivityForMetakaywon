@@ -30,7 +30,7 @@ public class SaveLoad
 
     public static SavedData LoadData()
     {
-        Debug.Log("LoadData Called");
+//        Debug.Log("LoadData Called");
         string path = Application.persistentDataPath + "/gameData.save";
 
         if(File.Exists(path))

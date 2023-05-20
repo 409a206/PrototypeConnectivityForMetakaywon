@@ -26,7 +26,7 @@ public class JUInputSystem : MonoBehaviour
 
 	//Mobile Buttons
 	private ButtonVirtual ShotButton, AimingButton, ReloadButton, RunButton, RunButtonRight, JumpButton,
-		 CrouchButton, RollButton, PickWeaponButton, EnterVehicleButton, NextWeaponButton, PreviousWeaponButton, RightButton, LeftButton, ForwardButton, BackButton, BrakeButton;
+		 CrouchButton, RollButton, PickWeaponButton, EnterVehicleButton, NextWeaponButton, PreviousWeaponButton, RightButton, LeftButton, ForwardButton, BackButton, BrakeButton, ConversationButton;
 
 	//Input Bools
 	[HideInInspector]public bool PressedShooting, PressedAiming, PressedReload, PressedRun, PressedJump,
@@ -288,6 +288,12 @@ public class JUInputSystem : MonoBehaviour
 		{
 			PressedPreviousWeaponDown = false;
 		}
+		
+		// //모바일 다이얼로그 트리거
+		// if(ConversationButton.IsPressedDown) {
+		// 	//다이얼로그 트리거 로직 작성하기
+			
+		// }
 	}
 	private void UpdateGetButton()
     {

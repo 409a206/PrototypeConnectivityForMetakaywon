@@ -15,11 +15,11 @@ public class DialogueTrigger : MonoBehaviour
 
     private void InitiateQuestData()
     {
-        Debug.Log("Initiate QuestData Called");
+        //Debug.Log("Initiate QuestData Called");
 
         //Saved Data가 존재한다면 불러오기
         if(SaveLoad.LoadData() != null) {
-            Debug.Log("Quest Data Loaded");
+//            Debug.Log("Quest Data Loaded");
             PlayerData.QuestData.QuestsActive = SaveLoad.LoadData().QuestsActive;
             PlayerData.QuestData.QuestsInactive = SaveLoad.LoadData().QuestsInactive;
             PlayerData.QuestData.QuestsComplete = SaveLoad.LoadData().QuestsComplete;
@@ -30,19 +30,19 @@ public class DialogueTrigger : MonoBehaviour
         if(PlayerData.QuestData.QuestsActive.Contains(dialogue.questCode)) {
             //느낌표 활성 처리 로직 작성
             dialogue.questIcon.SetActive(true);
-            Debug.Log(dialogue.questCode.ToString() + "Quest is in Active mode");
+            //Debug.Log(dialogue.questCode.ToString() + "Quest is in Active mode");
             dialogue.isMedalTaken = false;
             return;
         } else if (PlayerData.QuestData.QuestsInactive.Contains(dialogue.questCode)) {
             //느낌표 비활성 처리 로직 작성
             dialogue.questIcon.SetActive(false);
-            Debug.Log(dialogue.questCode.ToString() + "Quest is in Inactive mode");
+            //Debug.Log(dialogue.questCode.ToString() + "Quest is in Inactive mode");
             dialogue.isMedalTaken = false;
             return;
         } else if (PlayerData.QuestData.QuestsComplete.Contains(dialogue.questCode)) {
             //느낌표 비활성 처리 로직 작성
             dialogue.questIcon.SetActive(false);
-            Debug.Log(dialogue.questCode.ToString() + "Quest is in Complete mode");
+           // Debug.Log(dialogue.questCode.ToString() + "Quest is in Complete mode");
             //해당 다이얼로그가 완료된 것이라면 isMedalTaken을 true로 변경
             dialogue.isMedalTaken = true;
             return;
